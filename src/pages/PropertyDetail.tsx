@@ -251,7 +251,7 @@ export default function PropertyDetail() {
         {similar.length > 0 && (
           <section className="mt-16">
             <h2 className="section-title mb-8">Imóveis similares</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {similar.map(p => <PropertyCard key={p.id} property={p} />)}
             </div>
           </section>

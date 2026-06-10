@@ -31,10 +31,10 @@ export default function PropertyCard({ property }: Props) {
   const mainImage = property.images[0] || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80';
 
   return (
-    <Link to={`/imovel/${property.id}`} className="block group">
-      <div className="card group-hover:shadow-2xl transition-all duration-300">
+    <Link to={`/imovel/${property.id}`} className="block group h-full">
+      <div className="card group-hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
         {/* Image */}
-        <div className="relative overflow-hidden aspect-[4/3]">
+        <div className="relative overflow-hidden aspect-[4/3] shrink-0">
           <img
             src={mainImage}
             alt={property.title}
@@ -60,7 +60,7 @@ export default function PropertyCard({ property }: Props) {
         </div>
 
         {/* Content */}
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-2 mb-2">
             <h3 className="font-heading font-bold text-base text-gray-900 leading-tight line-clamp-2 group-hover:text-brand-orange transition-colors">
               {property.title}
@@ -92,8 +92,8 @@ export default function PropertyCard({ property }: Props) {
             </div>
           </div>
 
-          {/* Price */}
-          <div className="flex items-center justify-between">
+          {/* Price — pinned to the bottom */}
+          <div className="flex items-center justify-between mt-auto">
             <span className="text-2xl font-heading font-bold text-brand-orange">
               {formatPrice(property.price)}
             </span>

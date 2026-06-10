@@ -115,7 +115,7 @@ export default function Home() {
                 Ver todos <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {featured.map(p => <PropertyCard key={p.id} property={p} />)}
             </div>
             <div className="text-center mt-8 md:hidden">
