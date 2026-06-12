@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Search, Home as HomeIcon, Building2, Trees, ArrowRight, Star, ShieldCheck, Clock, Users } from 'lucide-react';
+import { Home as HomeIcon, Building2, Trees, MapPin, ArrowRight, Star, ShieldCheck, Clock, Users } from 'lucide-react';
 import PropertyCard from '../components/PropertyCard';
 import { useProperties } from '../hooks/useProperties';
 
@@ -36,27 +36,8 @@ export default function Home() {
             Atendimento personalizado para realizar o seu negócio.
           </p>
 
-          {/* Quick search */}
-          <div className="bg-white rounded-2xl p-4 shadow-2xl max-w-2xl mx-auto flex flex-col sm:flex-row gap-3">
-            <div className="flex-1 flex items-center gap-3 bg-brand-gray rounded-xl px-4 py-3">
-              <Search className="w-5 h-5 text-gray-400 shrink-0" />
-              <input
-                type="text"
-                placeholder="Buscar por bairro, cidade ou tipo..."
-                className="flex-1 bg-transparent text-gray-800 placeholder-gray-400 text-sm focus:outline-none"
-                onKeyDown={e => {
-                  if (e.key === 'Enter') window.location.href = '/vendas';
-                }}
-              />
-            </div>
-            <Link to="/vendas" className="btn-primary justify-center">
-              <Search className="w-4 h-4" />
-              Buscar
-            </Link>
-          </div>
-
           {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mt-14">
+          <div className="flex flex-wrap justify-center gap-8 mt-2 mb-14">
             {[
               { value: `${properties.length}+`, label: 'Imóveis disponíveis' },
               { value: '200+', label: 'Clientes satisfeitos' },
@@ -82,22 +63,24 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { icon: HomeIcon, label: 'Casas', type: 'Casa', color: 'from-orange-500 to-amber-500', count: properties.filter(p => p.type === 'Casa').length },
-              { icon: Building2, label: 'Apartamentos', type: 'Apartamento', color: 'from-purple-500 to-indigo-500', count: properties.filter(p => p.type === 'Apartamento').length },
-              { icon: Search, label: 'Terrenos', type: 'Terreno', color: 'from-amber-500 to-yellow-500', count: properties.filter(p => p.type === 'Terreno').length },
-              { icon: Trees, label: 'Chácaras', type: 'Chácara/Sítio/Fazenda', color: 'from-emerald-500 to-green-600', count: properties.filter(p => p.type === 'Chácara/Sítio/Fazenda').length },
-            ].map(cat => (
-              <Link
-                key={cat.type}
-                to={`/vendas?type=${encodeURIComponent(cat.type)}`}
-                className="group relative rounded-2xl overflow-hidden aspect-square flex flex-col items-center justify-center gap-3 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-90 group-hover:opacity-100 transition-opacity`} />
-                <cat.icon className="relative w-10 h-10 text-white" />
-                <span className="relative text-white font-heading font-bold text-lg">{cat.label}</span>
-                <span className="relative text-white/80 text-sm">{cat.count} imóve{cat.count !== 1 ? 'is' : 'l'}</span>
-              </Link>
-            ))}
+              { icon: HomeIcon,   label: 'Casas',       type: 'Casa',                  bg: 'bg-brand-orange',                   text: 'text-white',        hover: 'group-hover:bg-brand-orange-dark' },
+              { icon: Building2, label: 'Apartamentos', type: 'Apartamento',            bg: 'bg-brand-black',                    text: 'text-white',        hover: 'group-hover:bg-gray-800' },
+              { icon: MapPin,    label: 'Terrenos',     type: 'Terreno',               bg: 'bg-brand-gray',                     text: 'text-brand-black',  hover: 'group-hover:bg-brand-gray-dark' },
+              { icon: Trees,     label: 'Chácaras',     type: 'Chácara/Sítio/Fazenda', bg: 'bg-[#3a3a3a]',                      text: 'text-white',        hover: 'group-hover:bg-brand-black' },
+            ].map(cat => {
+              const count = properties.filter(p => p.type === cat.type).length;
+              return (
+                <Link
+                  key={cat.type}
+                  to={`/vendas?type=${encodeURIComponent(cat.type)}`}
+                  className={`group relative rounded-2xl overflow-hidden aspect-square flex flex-col items-center justify-center gap-3 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 ${cat.bg} ${cat.hover}`}
+                >
+                  <cat.icon className={`w-10 h-10 ${cat.text} transition-transform duration-300 group-hover:scale-110`} />
+                  <span className={`font-heading font-bold text-lg ${cat.text}`}>{cat.label}</span>
+                  <span className={`text-sm ${cat.text} opacity-70`}>{count} imóve{count !== 1 ? 'is' : 'l'}</span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

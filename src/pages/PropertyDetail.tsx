@@ -223,10 +223,6 @@ export default function PropertyDetail() {
                 Falar no WhatsApp
               </a>
 
-              <Link to="/anuncie" className="w-full flex items-center justify-center gap-2 btn-secondary mb-4">
-                Quero anunciar meu imóvel
-              </Link>
-
               <div className="border-t border-gray-100 pt-4 space-y-2.5">
                 <div className="flex items-center gap-2 text-sm text-gray-500">
                   <MapPin className="w-4 h-4 text-brand-orange shrink-0" />
@@ -239,11 +235,6 @@ export default function PropertyDetail() {
               </div>
             </div>
 
-            {/* Safety notice */}
-            <div className="bg-brand-gray rounded-xl p-4 text-sm text-gray-600 border border-gray-200">
-              <p className="font-semibold text-gray-700 mb-1">Negociação segura</p>
-              <p>Não realize pagamentos antecipados. Toda negociação é feita de forma presencial ou por canais oficiais.</p>
-            </div>
           </div>
         </div>
 

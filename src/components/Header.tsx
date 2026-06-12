@@ -35,14 +35,10 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src="/logo.png" alt="Machado Imóveis" className="h-10 md:h-12 w-auto" />
-            <div className="hidden sm:block">
-              <div className="text-white font-heading font-bold text-lg leading-tight">MACHADO</div>
-              <div className="text-brand-orange font-heading font-bold text-sm leading-tight tracking-widest">IMÓVEIS</div>
-            </div>
+        <div className="flex items-center justify-between h-20 md:h-24">
+          {/* Logo only — no text beside it */}
+          <Link to="/" className="flex items-center shrink-0">
+            <img src="/logo.png" alt="Machado Imóveis" className="h-14 md:h-16 w-auto" />
           </Link>
 
           {/* Desktop nav */}
