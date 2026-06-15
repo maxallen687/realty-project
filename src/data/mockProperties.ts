@@ -26,7 +26,7 @@ export const mockProperties: Property[] = [
     lng: -49.2733,
     createdAt: '2024-01-10T10:00:00Z',
     updatedAt: '2024-01-10T10:00:00Z',
-    whatsappContact: '5541999999999',
+    whatsappContact: '55992038731',
   },
   {
     id: '2',
