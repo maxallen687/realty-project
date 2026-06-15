@@ -8,7 +8,7 @@ export default function Contact() {
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = encodeURIComponent(`Olá! Meu nome é ${name}.\n\n${message}`);
-    window.open(`https://wa.me/5541999999999?text=${msg}`, '_blank');
+    window.open(`https://wa.me/55992038731?text=${msg}`, '_blank');
   };
 
   return (
@@ -31,7 +31,7 @@ export default function Contact() {
             {/* WhatsApp CTA */}
             <div className="lg:col-span-1 flex flex-col gap-5">
               <a
-                href="https://wa.me/5541999999999"
+                href="https://wa.me/55992038731"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-5 bg-green-50 hover:bg-green-500 border-2 border-green-200 hover:border-green-500 rounded-2xl p-6 transition-all duration-300"
@@ -41,7 +41,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-heading font-bold text-lg text-green-700 group-hover:text-white">WhatsApp</div>
-                  <div className="text-green-600 group-hover:text-green-100 text-sm">(41) 9 9999-9999</div>
+                  <div className="text-green-600 group-hover:text-green-100 text-sm">(55) 99203-8731</div>
                   <div className="text-xs text-green-500 group-hover:text-green-200 mt-1">Clique para conversar →</div>
                 </div>
               </a>
@@ -52,7 +52,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-heading font-bold text-lg text-brand-black">Telefone</div>
-                  <div className="text-gray-500 text-sm">(41) 9 9999-9999</div>
+                  <div className="text-gray-500 text-sm">(55) 99203-8731</div>
                 </div>
               </div>
 
@@ -71,8 +71,8 @@ export default function Contact() {
                   <MapPin className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <div className="font-heading font-bold text-lg text-brand-black">Região</div>
-                  <div className="text-gray-500 text-sm">Curitiba – PR e Região Metropolitana</div>
+                  <div className="font-heading font-bold text-lg text-brand-black">Endereço</div>
+                  <div className="text-gray-500 text-sm">Rua Antônio Fernandes da Cunha, 557<br />Santana do Livramento – RS</div>
                 </div>
               </div>
 
@@ -129,8 +129,8 @@ export default function Contact() {
           <div className="rounded-2xl overflow-hidden shadow-md bg-brand-gray h-72 flex items-center justify-center">
             <div className="text-center">
               <MapPin className="w-12 h-12 text-brand-orange mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">Atendemos em Curitiba e Região Metropolitana</p>
-              <p className="text-gray-400 text-sm mt-1">Consulte disponibilidade de visitas</p>
+              <p className="text-gray-500 font-medium">Santana do Livramento – RS</p>
+              <p className="text-gray-400 text-sm mt-1">Rua Antônio Fernandes da Cunha, 557</p>
             </div>
           </div>
         </div>
