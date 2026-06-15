@@ -214,7 +214,7 @@ export default function PropertyDetail() {
               <p className="text-gray-500 text-sm mb-5">{property.type} em {property.neighborhood}</p>
 
               <a
-                href={`https://wa.me/5541999999999?text=${whatsappMsg}`}
+                href={`https://wa.me/55992038731?text=${whatsappMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl transition-colors shadow-md hover:shadow-lg mb-3"
