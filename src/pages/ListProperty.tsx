@@ -24,7 +24,7 @@ export default function ListProperty() {
       `*Tipo:* ${form.propertyType}\n` +
       (form.message ? `*Detalhes:* ${form.message}` : '')
     );
-    window.open(`https://wa.me/5541999999999?text=${msg}`, '_blank');
+    window.open(`https://wa.me/55992038731?text=${msg}`, '_blank');
     setSubmitted(true);
   };
 
@@ -71,8 +71,8 @@ export default function ListProperty() {
               <div className="bg-brand-orange rounded-2xl p-6 text-white">
                 <p className="font-heading font-bold text-lg mb-1">Prefere ligar?</p>
                 <p className="text-white/80 text-sm mb-3">Atendemos de segunda a sábado, das 8h às 18h.</p>
-                <a href="https://wa.me/5541999999999" target="_blank" rel="noopener noreferrer" className="bg-white text-brand-orange font-bold text-sm px-4 py-2 rounded-lg hover:bg-brand-gray transition-colors inline-block">
-                  (41) 9 9999-9999
+                <a href="https://wa.me/55992038731" target="_blank" rel="noopener noreferrer" className="bg-white text-brand-orange font-bold text-sm px-4 py-2 rounded-lg hover:bg-brand-gray transition-colors inline-block">
+                  (55) 99203-8731
                 </a>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ListProperty() {
                     <input
                       type="tel"
                       required
-                      placeholder="(41) 9 9999-9999"
+                      placeholder="(55) 99203-8731"
                       value={form.whatsapp}
                       onChange={e => set('whatsapp', formatPhone(e.target.value))}
                       className="input-field"
