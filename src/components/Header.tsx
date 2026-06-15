@@ -35,10 +35,12 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Logo only — no text beside it */}
-          <Link to="/" className="flex items-center shrink-0">
-            <img src="/logo.png" alt="Machado Imóveis" className="h-14 md:h-16 w-auto" />
+        <div className="flex items-center justify-between h-24 md:h-28">
+          {/* Logo — large and prominent */}
+          <Link to="/" className="flex items-center shrink-0 group">
+            <div className="rounded-xl ring-2 ring-brand-orange/40 group-hover:ring-brand-orange/80 transition-all duration-300 p-1 bg-brand-black/60">
+              <img src="/logo.png" alt="Machado Imóveis" className="h-16 md:h-20 w-auto drop-shadow-lg" />
+            </div>
           </Link>
 
           {/* Desktop nav */}
@@ -61,7 +63,7 @@ export default function Header() {
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-3">
             <a
-              href="https://wa.me/5541999999999"
+              href="https://wa.me/55992038731"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-dark text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
@@ -98,7 +100,7 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href="https://wa.me/5541999999999"
+              href="https://wa.me/55992038731"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 flex items-center justify-center gap-2 bg-brand-orange text-white font-semibold py-3 rounded-lg"
