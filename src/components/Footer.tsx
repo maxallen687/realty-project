@@ -68,12 +68,12 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
-                <span className="text-gray-400 text-sm">Curitiba – PR e Região Metropolitana</span>
+                <span className="text-gray-400 text-sm">Rua Antônio Fernandes da Cunha, 557<br />Santana do Livramento – RS</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-brand-orange shrink-0" />
-                <a href="https://wa.me/5541999999999" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  (41) 9 9999-9999
+                <a href="https://wa.me/55992038731" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  (55) 99203-8731
                 </a>
               </li>
               <li className="flex items-center gap-3">
