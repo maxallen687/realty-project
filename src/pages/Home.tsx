@@ -20,10 +20,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-black/80 via-brand-black/60 to-brand-black" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-32 text-center">
           <div className="inline-flex items-center gap-2 bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-sm font-medium px-4 py-2 rounded-full mb-6">
             <Star className="w-4 h-4 fill-current" />
-            Referência em imóveis no Paraná
+            O nome certo para grandes negócios!
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black text-white leading-tight mb-6">
@@ -32,8 +32,8 @@ export default function Home() {
           </h1>
 
           <p className="text-xl text-brand-gray max-w-2xl mx-auto mb-10 leading-relaxed">
-            Casas, apartamentos, terrenos e chácaras em Curitiba e região metropolitana.
-            Atendimento personalizado para realizar o seu negócio.
+            Casas, apartamentos, terrenos e chácaras em Santana do Livramento e região.
+            Experiências imobiliárias únicas, com confiança e atendimento VIP.
           </p>
 
           {/* Stats */}
@@ -119,9 +119,9 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: ShieldCheck, title: 'Segurança e Transparência', desc: 'Toda documentação verificada e processos claros do início ao fim. Sua tranquilidade é nossa prioridade.' },
-              { icon: Clock, title: 'Atendimento Ágil', desc: 'Respondemos rapidamente via WhatsApp. Disponíveis para atender você quando precisar.' },
-              { icon: Users, title: 'Experiência Comprovada', desc: 'Mais de 10 anos no mercado imobiliário de Curitiba e região, com centenas de famílias atendidas.' },
+              { icon: ShieldCheck, title: 'Segurança Técnica', desc: 'Com formação em Engenharia Civil, garantimos regularização impecável e segurança técnica em cada negócio.' },
+              { icon: Clock, title: 'Atendimento VIP', desc: 'Respondemos rapidamente via WhatsApp. Cada cliente é único e tratado de forma personalizada.' },
+              { icon: Users, title: 'Experiência Comprovada', desc: 'Mais de 10 anos no mercado imobiliário, transformando clientes em protagonistas de grandes conquistas.' },
             ].map(item => (
               <div key={item.title} className="text-center p-8 rounded-2xl bg-brand-gray hover:shadow-lg transition-shadow group">
                 <div className="w-16 h-16 bg-brand-orange/10 rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-brand-orange group-hover:scale-110 transition-all duration-300">
@@ -148,7 +148,7 @@ export default function Home() {
             <Link to="/anuncie" className="bg-white text-brand-orange hover:bg-brand-gray font-bold px-8 py-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2">
               Anunciar meu imóvel
             </Link>
-            <a href="https://wa.me/5541999999999" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 border border-white/30">
+            <a href="https://wa.me/55992038731" target="_blank" rel="noopener noreferrer" className="bg-white/20 hover:bg-white/30 text-white font-bold px-8 py-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 border border-white/30">
               Falar no WhatsApp
             </a>
           </div>
