@@ -1,9 +1,42 @@
-import { Award, Target, Heart, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Phone, Target, Eye, Heart, Award, Lightbulb, Handshake, TrendingUp } from 'lucide-react';
+
+const values = [
+  {
+    icon: Award,
+    title: 'Exclusividade',
+    desc: 'Cada cliente é único e tratado de forma personalizada.',
+  },
+  {
+    icon: Handshake,
+    title: 'Confiança',
+    desc: 'Negócios transparentes e seguros em cada etapa.',
+  },
+  {
+    icon: Heart,
+    title: 'Excelência',
+    desc: 'Atendimento de alto nível, superando expectativas.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Inovação',
+    desc: 'Processos modernos e estratégias inteligentes de vendas.',
+  },
+  {
+    icon: Target,
+    title: 'Comprometimento',
+    desc: 'Transformar sonhos em patrimônio com total dedicação.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Resultados',
+    desc: 'Foco em grandes negócios que geram satisfação e crescimento para todos.',
+  },
+];
 
 export default function About() {
   return (
-    <main className="pt-20">
+    <main className="pt-24">
       {/* Hero */}
       <section className="relative bg-brand-black py-24 overflow-hidden">
         <div className="absolute inset-0">
@@ -14,11 +47,14 @@ export default function About() {
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-block bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-sm font-medium px-4 py-2 rounded-full mb-5">
+            O nome certo para grandes negócios!
+          </div>
           <h1 className="text-4xl md:text-5xl font-heading font-black text-white mb-4">
             Sobre a <span className="text-brand-orange">Machado Imóveis</span>
           </h1>
           <p className="text-xl text-brand-gray">
-            Conheça a nossa história, valores e compromisso com você
+            A união da técnica com o propósito
           </p>
         </div>
       </section>
@@ -30,24 +66,27 @@ export default function About() {
             <div>
               <span className="text-brand-orange font-semibold text-sm uppercase tracking-wider">Nossa história</span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-brand-black mt-2 mb-6">
-                Mais de 10 anos realizando sonhos
+                A União da Técnica com o Propósito
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  A Machado Imóveis nasceu do sonho de oferecer um serviço imobiliário diferenciado em Curitiba e região metropolitana. Com mais de uma década de experiência, construímos nossa reputação com base em transparência, dedicação e resultados concretos.
+                  A Machado Imóveis nasceu da união entre a solidez da engenharia e a sensibilidade do design. Com mais de 10 anos de experiência na Engenharia Civil, <strong className="text-brand-black">Bruno Machado</strong> fundou a imobiliária para transformar o mercado local, oferecendo segurança técnica, regularização impecável e soluções reais para quem busca patrimônio.
                 </p>
                 <p>
-                  Como corretor de imóveis credenciado, atuo com ética e profissionalismo em todas as etapas da negociação — desde a avaliação do imóvel até a assinatura do contrato. Cada cliente recebe atenção personalizada, porque entendo que a compra ou venda de um imóvel é uma das decisões mais importantes da sua vida.
+                  Complementando essa visão, a <strong className="text-brand-black">Designer de Interiores Romina Alonso</strong> traz um olhar refinado sobre cada espaço, revelando o verdadeiro potencial de valorização de cada imóvel.
                 </p>
                 <p>
-                  Nosso portfólio abrange residências, apartamentos, terrenos, chácaras e imóveis comerciais em toda a grande Curitiba. Se você busca qualidade, segurança e agilidade, a Machado Imóveis é o parceiro certo para você.
+                  Como uma empresa familiar, guiada pela presença da nossa pequena Alfonsina, compreendemos que por trás de cada negociação existe um projeto de vida. Nosso compromisso é proporcionar experiências únicas, unindo técnica, ética e um atendimento VIP que transforma clientes em protagonistas de grandes conquistas.
+                </p>
+                <p className="font-semibold text-brand-black">
+                  Machado Imóveis: O nome certo para grandes negócios.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
                 <Link to="/vendas" className="btn-primary">
                   Ver imóveis disponíveis
                 </Link>
-                <a href="https://wa.me/5541999999999" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                <a href="https://wa.me/55992038731" target="_blank" rel="noopener noreferrer" className="btn-secondary">
                   <Phone className="w-4 h-4" />
                   Falar no WhatsApp
                 </a>
@@ -56,7 +95,7 @@ export default function About() {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&q=80"
-                alt="Corretor"
+                alt="Bruno Machado e Romina Alonso"
                 className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]"
               />
               <div className="absolute -bottom-6 -left-6 bg-brand-orange text-white p-6 rounded-2xl shadow-xl">
@@ -68,37 +107,50 @@ export default function About() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Mission & Vision */}
       <section className="py-16 bg-brand-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Nossos valores</h2>
-            <p className="section-subtitle">O que nos move todos os dias</p>
+            <h2 className="section-title">Missão &amp; Visão</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: Award,
-                title: 'Excelência',
-                desc: 'Comprometidos com o mais alto padrão em cada atendimento e negociação. Qualidade é inegociável.',
-              },
-              {
-                icon: Target,
-                title: 'Foco no Cliente',
-                desc: 'Seu objetivo é o nosso objetivo. Ouvimos, entendemos e buscamos a melhor solução para suas necessidades.',
-              },
-              {
-                icon: Heart,
-                title: 'Paixão pelo que fazemos',
-                desc: 'Amamos o que fazemos e isso se reflete em cada imóvel apresentado, em cada negócio fechado.',
-              },
-            ].map(value => (
-              <div key={value.title} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-14 h-14 bg-brand-orange rounded-xl flex items-center justify-center mb-5">
-                  <value.icon className="w-7 h-7 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-brand-black rounded-2xl p-8 text-white">
+              <div className="w-14 h-14 bg-brand-orange rounded-xl flex items-center justify-center mb-5">
+                <Target className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="font-heading font-bold text-2xl mb-4">Missão</h3>
+              <p className="text-brand-gray leading-relaxed">
+                Proporcionar experiências imobiliárias únicas, com confiança e atendimento que transforma clientes em protagonistas de grandes conquistas.
+              </p>
+            </div>
+            <div className="bg-brand-orange rounded-2xl p-8 text-white">
+              <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center mb-5">
+                <Eye className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="font-heading font-bold text-2xl mb-4">Visão</h3>
+              <p className="text-white/90 leading-relaxed">
+                Ser a imobiliária mais lembrada e desejada da região, referência em negócios exclusivos e atendimento VIP, onde pensar em imóveis significa pensar na Machado Imóveis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="section-title">Nossos Valores</h2>
+            <p className="section-subtitle">Os princípios que guiam cada negócio</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {values.map(v => (
+              <div key={v.title} className="bg-brand-gray rounded-2xl p-6 hover:shadow-md transition-shadow group">
+                <div className="w-12 h-12 bg-brand-orange rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <v.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-heading font-bold text-xl text-brand-black mb-3">{value.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{value.desc}</p>
+                <h3 className="font-heading font-bold text-lg text-brand-black mb-2">{v.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
