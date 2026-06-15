@@ -187,7 +187,7 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
             </Field>
 
             <Field label="WhatsApp para contato">
-              <input type="text" value={form.whatsappContact || ''} onChange={e => set('whatsappContact', e.target.value)} className="input-field" placeholder="5541999999999" />
+              <input type="text" value={form.whatsappContact || ''} onChange={e => set('whatsappContact', e.target.value)} className="input-field" placeholder="55992038731" />
             </Field>
           </div>
 
