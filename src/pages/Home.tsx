@@ -27,7 +27,7 @@ export default function Home() {
             <img
               src="/logo.png"
               alt="Machado Imóveis"
-              className="h-28 md:h-36 w-auto drop-shadow-2xl mb-4"
+              className="h-36 md:h-48 w-auto drop-shadow-2xl mb-4"
             />
             <div className="flex flex-col items-center">
               <span className="font-heading font-black text-white text-3xl md:text-4xl tracking-widest leading-none">MACHADO</span>
