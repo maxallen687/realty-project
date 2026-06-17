@@ -92,15 +92,17 @@ export default function About() {
                 </a>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/familia.png"
-                alt="Bruno Machado, Romina Alonso e Alfonsina"
-                className="rounded-2xl shadow-2xl w-full object-cover"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-brand-orange text-white p-6 rounded-2xl shadow-xl">
-                <div className="text-3xl font-heading font-black">10+</div>
-                <div className="text-white/90 text-sm">Anos de experiência</div>
+            <div className="relative flex justify-center">
+              <div className="relative inline-block">
+                <img
+                  src="/familia.png"
+                  alt="Bruno Machado, Romina Alonso e Alfonsina"
+                  className="rounded-2xl shadow-2xl max-w-full w-80 md:w-96 object-contain"
+                />
+                <div className="absolute -bottom-6 -left-6 bg-brand-orange text-white p-6 rounded-2xl shadow-xl">
+                  <div className="text-3xl font-heading font-black">10+</div>
+                  <div className="text-white/90 text-sm">Anos de experiência</div>
+                </div>
               </div>
             </div>
           </div>
