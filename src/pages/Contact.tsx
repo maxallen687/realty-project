@@ -62,7 +62,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-heading font-bold text-lg text-brand-black">E-mail</div>
-                  <div className="text-gray-500 text-sm break-all">contato@machadoimoveis.com.br</div>
+                  <div className="text-gray-500 text-sm break-all">brunomaximilliano@gmail.com</div>
                 </div>
               </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-heading font-bold text-lg text-brand-black">Horário</div>
-                  <div className="text-gray-500 text-sm">Seg – Sáb: 8h às 18h</div>
+                  <div className="text-gray-500 text-sm">Sempre aberto</div>
                 </div>
               </div>
             </div>

@@ -15,14 +15,14 @@ export default function Footer() {
                 <div className="text-brand-orange font-heading font-bold text-sm leading-tight tracking-widest">IMÓVEIS</div>
               </div>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Realizando o sonho da casa própria com transparência, profissionalismo e dedicação.
+            <p className="text-gray-400 text-sm leading-relaxed italic">
+              O nome certo para grandes negócios.
             </p>
             <div className="flex gap-3 mt-5">
-              <a href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Instagram">
+              <a href="https://www.instagram.com/machadoimoveisrs?igsh=dG03ZHF1bnRqNjFi" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Instagram">
                 IG
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=61576622632552" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Facebook">
                 FB
               </a>
             </div>
@@ -78,8 +78,8 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-orange shrink-0" />
-                <a href="mailto:contato@machadoimoveis.com.br" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  contato@machadoimoveis.com.br
+                <a href="mailto:brunomaximilliano@gmail.com" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  brunomaximilliano@gmail.com
                 </a>
               </li>
             </ul>

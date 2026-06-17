@@ -69,9 +69,8 @@ export default function ListProperty() {
               ))}
 
               <div className="bg-brand-orange rounded-2xl p-6 text-white">
-                <p className="font-heading font-bold text-lg mb-1">Prefere ligar?</p>
-                <p className="text-white/80 text-sm mb-3">Atendemos de segunda a sábado, das 8h às 18h.</p>
-                <a href="https://wa.me/55992038731" target="_blank" rel="noopener noreferrer" className="bg-white text-brand-orange font-bold text-sm px-4 py-2 rounded-lg hover:bg-brand-gray transition-colors inline-block">
+                <p className="font-heading font-bold text-lg mb-3">Prefere ligar?</p>
+                <a href="https://wa.me/5555992038731" target="_blank" rel="noopener noreferrer" className="bg-white text-brand-orange font-bold text-sm px-4 py-2 rounded-lg hover:bg-brand-gray transition-colors inline-block">
                   (55) 99203-8731
                 </a>
               </div>

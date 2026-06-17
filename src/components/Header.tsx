@@ -36,10 +36,14 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24 md:h-28">
-          {/* Logo — large and prominent */}
-          <Link to="/" className="flex items-center shrink-0 group">
+          {/* Logo + brand name */}
+          <Link to="/" className="flex items-center gap-3 shrink-0 group">
             <div className="rounded-xl ring-2 ring-brand-orange/40 group-hover:ring-brand-orange/80 transition-all duration-300 p-1 bg-brand-black/60">
               <img src="/logo.png" alt="Machado Imóveis" className="h-16 md:h-20 w-auto drop-shadow-lg" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-heading font-black text-white text-lg md:text-xl tracking-widest leading-none">MACHADO</span>
+              <span className="font-heading font-black text-brand-orange text-base md:text-lg tracking-[0.25em] leading-none mt-0.5">IMÓVEIS</span>
             </div>
           </Link>
 

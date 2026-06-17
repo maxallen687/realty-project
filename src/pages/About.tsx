@@ -94,9 +94,9 @@ export default function About() {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?w=800&q=80"
-                alt="Bruno Machado e Romina Alonso"
-                className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]"
+                src="/familia.png"
+                alt="Bruno Machado, Romina Alonso e Alfonsina"
+                className="rounded-2xl shadow-2xl w-full object-cover"
               />
               <div className="absolute -bottom-6 -left-6 bg-brand-orange text-white p-6 rounded-2xl shadow-xl">
                 <div className="text-3xl font-heading font-black">10+</div>

@@ -21,6 +21,20 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-40 pb-32 text-center">
+
+          {/* Brand identity block */}
+          <div className="flex flex-col items-center mb-8">
+            <img
+              src="/logo.png"
+              alt="Machado Imóveis"
+              className="h-28 md:h-36 w-auto drop-shadow-2xl mb-4"
+            />
+            <div className="flex flex-col items-center">
+              <span className="font-heading font-black text-white text-3xl md:text-4xl tracking-widest leading-none">MACHADO</span>
+              <span className="font-heading font-black text-brand-orange text-2xl md:text-3xl tracking-[0.3em] leading-none">IMÓVEIS</span>
+            </div>
+          </div>
+
           <div className="inline-flex items-center gap-2 bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-sm font-medium px-4 py-2 rounded-full mb-6">
             <Star className="w-4 h-4 fill-current" />
             O nome certo para grandes negócios!
