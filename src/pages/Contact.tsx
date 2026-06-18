@@ -12,7 +12,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="pt-20">
+    <main className="pt-28 md:pt-36">
       {/* Header */}
       <section className="bg-brand-black py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

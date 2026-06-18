@@ -36,7 +36,7 @@ const values = [
 
 export default function About() {
   return (
-    <main className="pt-24">
+    <main className="pt-28 md:pt-36">
       {/* Hero */}
       <section className="relative bg-brand-black py-24 overflow-hidden">
         <div className="absolute inset-0">
@@ -97,7 +97,7 @@ export default function About() {
                 <img
                   src="/familia.png"
                   alt="Bruno Machado, Romina Alonso e Alfonsina"
-                  className="rounded-2xl shadow-2xl max-w-full w-80 md:w-96 object-contain"
+                  className="rounded-2xl shadow-2xl w-full object-cover aspect-[2/3]"
                 />
                 <div className="absolute -bottom-6 -left-6 bg-brand-orange text-white p-6 rounded-2xl shadow-xl">
                   <div className="text-3xl font-heading font-black">10+</div>

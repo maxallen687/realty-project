@@ -31,7 +31,7 @@ export default function ListProperty() {
   const set = (key: keyof LeadForm, value: string) => setForm(f => ({ ...f, [key]: value }));
 
   return (
-    <main className="pt-20">
+    <main className="pt-28 md:pt-36">
       {/* Header */}
       <section className="bg-brand-black py-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">

@@ -19,7 +19,7 @@ export default function Footer() {
               O nome certo para grandes negócios.
             </p>
             <div className="flex gap-3 mt-5">
-              <a href="https://www.instagram.com/machadoimoveisrs?igsh=dG03ZHF1bnRqNjFi" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Instagram">
+              <a href="https://www.instagram.com/machadoimoveisrss?igsh=MXAycjBxdDg2MDc0" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Instagram">
                 IG
               </a>
               <a href="https://www.facebook.com/profile.php?id=61576622632552" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/10 hover:bg-brand-orange flex items-center justify-center transition-colors font-bold text-xs" aria-label="Facebook">

@@ -56,7 +56,7 @@ export default function PropertyDetail() {
   );
 
   return (
-    <main className="pt-20">
+    <main className="pt-28 md:pt-36">
       {/* Breadcrumb */}
       <div className="bg-brand-gray border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-sm text-gray-500">

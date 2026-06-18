@@ -71,7 +71,7 @@ export default function Sales() {
   const activeCount = Object.entries(filters).filter(([, v]) => v !== '').length;
 
   return (
-    <main className="pt-20">
+    <main className="pt-28 md:pt-36">
       {/* Header */}
       <section className="bg-brand-black py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
