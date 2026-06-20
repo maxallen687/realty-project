@@ -15,7 +15,7 @@ const SESSION_HOURS = 12;
 const USERNAME = import.meta.env.VITE_ADMIN_USER ?? 'admin';
 const PASSWORD_HASH =
   import.meta.env.VITE_ADMIN_PASSWORD_HASH ??
-  'e9fc5d91c70d1228cbeb6b5eaf50157d8e04717f05b506aa1fdd7f34d30053ac';
+  'f627d476c308c1d5db0d4c1d8eba901c90de17699890933637081b4aa213a612';
 
 // ---- shared store so every component sees the same auth state ----
 let authed = false;
