@@ -31,11 +31,11 @@ export default function AdminDashboard() {
     p.neighborhood.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleSave = (data: Omit<Property, 'id' | 'createdAt' | 'updatedAt'>) => {
+  const handleSave = async (data: Omit<Property, 'id' | 'createdAt' | 'updatedAt'>) => {
     if (editingProperty) {
-      updateProperty(editingProperty.id, data);
+      await updateProperty(editingProperty.id, data);
     } else {
-      addProperty(data);
+      await addProperty(data);
     }
     setFormOpen(false);
     setEditingProperty(undefined);
@@ -46,8 +46,8 @@ export default function AdminDashboard() {
     setFormOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    deleteProperty(id);
+  const handleDelete = async (id: string) => {
+    await deleteProperty(id);
     setDeleteConfirm(null);
   };
 

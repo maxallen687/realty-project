@@ -2,24 +2,26 @@ import { useState } from 'react';
 import { LogIn, Eye, EyeOff, Lock } from 'lucide-react';
 import { useAdmin } from '../hooks/useAdmin';
 
-interface Props {
-  onLogin: () => void;
-}
-
-export default function AdminLogin({ onLogin }: Props) {
+export default function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState('');
-  const { login } = useAdmin();
+  const { login, usesEmail } = useAdmin();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (login(username, password)) {
-      onLogin();
-    } else {
-      setError('Usuário ou senha incorretos.');
+    setSubmitting(true);
+    try {
+      // On success the shared auth store re-renders AdminPanel into the dashboard.
+      if (!(await login(username, password))) {
+        setError(usesEmail ? 'E-mail ou senha incorretos.' : 'Usuário ou senha incorretos.');
+      }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -34,15 +36,14 @@ export default function AdminLogin({ onLogin }: Props) {
 
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-2xl space-y-5">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">Usuário</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">{usesEmail ? 'E-mail' : 'Usuário'}</label>
             <input
-              type="text"
+              type={usesEmail ? 'email' : 'text'}
               required
-              placeholder="admin"
               value={username}
               onChange={e => setUsername(e.target.value)}
               className="input-field"
-              autoComplete="username"
+              autoComplete={usesEmail ? 'email' : 'username'}
             />
           </div>
           <div>
@@ -68,13 +69,10 @@ export default function AdminLogin({ onLogin }: Props) {
               {error}
             </div>
           )}
-          <button type="submit" className="btn-primary w-full justify-center py-3">
+          <button type="submit" disabled={submitting} className="btn-primary w-full justify-center py-3 disabled:opacity-60">
             <LogIn className="w-4 h-4" />
-            Entrar
+            {submitting ? 'Entrando...' : 'Entrar'}
           </button>
-          <p className="text-xs text-gray-400 text-center">
-            Credenciais padrão: admin / machado2024
-          </p>
         </form>
       </div>
     </div>

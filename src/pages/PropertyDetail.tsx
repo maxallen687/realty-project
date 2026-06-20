@@ -18,7 +18,7 @@ const statusColors: Record<string, string> = {
 export default function PropertyDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { properties, getProperty } = useProperties();
+  const { properties, getProperty, loading } = useProperties();
   const property = getProperty(id!);
 
   const [currentImg, setCurrentImg] = useState(0);
@@ -28,6 +28,14 @@ export default function PropertyDetail() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
+
+  if (loading) {
+    return (
+      <main className="pt-20 min-h-screen flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-gray-200 border-t-brand-orange rounded-full animate-spin" />
+      </main>
+    );
+  }
 
   if (!property) {
     return (

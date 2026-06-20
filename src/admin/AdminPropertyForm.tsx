@@ -1,13 +1,14 @@
 import { useState, useRef } from 'react';
 import { X, Upload, Plus, Star, StarOff, ChevronDown } from 'lucide-react';
 import type { Property, PropertyType, PropertyStatus } from '../types';
+import { supabase, isSupabaseConfigured, PROPERTY_IMAGES_BUCKET } from '../lib/supabase';
 
 const PROPERTY_TYPES: PropertyType[] = ['Casa', 'Apartamento', 'Terreno', 'Chácara/Sítio/Fazenda'];
 const PROPERTY_STATUSES: PropertyStatus[] = ['Pronto', 'Em construção', 'Comercial'];
 
 interface Props {
   property?: Property;
-  onSave: (data: Omit<Property, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  onSave: (data: Omit<Property, 'id' | 'createdAt' | 'updatedAt'>) => void | Promise<void>;
   onCancel: () => void;
 }
 
@@ -56,11 +57,17 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
 
   const [newImageUrl, setNewImageUrl] = useState('');
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [uploading, setUploading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm(f => ({ ...f, [key]: value }));
     setErrors(e => ({ ...e, [key]: undefined }));
+  };
+
+  const appendImages = (urls: string[]) => {
+    if (urls.length) setForm(f => ({ ...f, images: [...f.images, ...urls] }));
   };
 
   const validate = (): boolean => {
@@ -75,14 +82,20 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validate()) onSave(form);
+    if (!validate()) return;
+    setSaving(true);
+    try {
+      await onSave(form);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const addImageUrl = () => {
     if (newImageUrl.trim()) {
-      set('images', [...form.images, newImageUrl.trim()]);
+      appendImages([newImageUrl.trim()]);
       setNewImageUrl('');
     }
   };
@@ -91,17 +104,46 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
     set('images', form.images.filter((_, i) => i !== index));
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    files.forEach(file => {
+  const readAsDataUrl = (file: File) =>
+    new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = ev => {
-        if (ev.target?.result) {
-          set('images', [...form.images, ev.target.result as string]);
-        }
-      };
+      reader.onload = ev => resolve(ev.target?.result as string);
+      reader.onerror = reject;
       reader.readAsDataURL(file);
     });
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    e.target.value = ''; // allow re-selecting the same file later
+    if (!files.length) return;
+
+    setUploading(true);
+    try {
+      if (isSupabaseConfigured && supabase) {
+        // Upload each file to Supabase Storage and keep the public URL.
+        const urls: string[] = [];
+        for (const file of files) {
+          const ext = file.name.split('.').pop() || 'jpg';
+          const path = `${Date.now()}-${Math.round(performance.now())}-${urls.length}.${ext}`;
+          const { error } = await supabase.storage
+            .from(PROPERTY_IMAGES_BUCKET)
+            .upload(path, file, { cacheControl: '3600', upsert: false });
+          if (error) {
+            console.error('Erro no upload da imagem:', error.message);
+            continue;
+          }
+          const { data } = supabase.storage.from(PROPERTY_IMAGES_BUCKET).getPublicUrl(path);
+          urls.push(data.publicUrl);
+        }
+        appendImages(urls);
+      } else {
+        // Demo mode: embed the image as a base64 data URL.
+        const urls = await Promise.all(files.map(readAsDataUrl));
+        appendImages(urls.filter(Boolean));
+      }
+    } finally {
+      setUploading(false);
+    }
   };
 
   const Field = ({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) => (
@@ -249,10 +291,11 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
-              className="w-full border-2 border-dashed border-gray-300 hover:border-brand-orange rounded-xl py-6 flex flex-col items-center gap-2 text-gray-500 hover:text-brand-orange transition-colors"
+              disabled={uploading}
+              className="w-full border-2 border-dashed border-gray-300 hover:border-brand-orange rounded-xl py-6 flex flex-col items-center gap-2 text-gray-500 hover:text-brand-orange transition-colors disabled:opacity-60"
             >
               <Upload className="w-6 h-6" />
-              <span className="text-sm font-medium">Fazer upload do computador</span>
+              <span className="text-sm font-medium">{uploading ? 'Enviando imagens...' : 'Fazer upload do computador'}</span>
               <span className="text-xs text-gray-400">PNG, JPG ou WebP</span>
             </button>
           </div>
@@ -279,8 +322,8 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-gray-100">
-            <button type="submit" className="btn-primary flex-1 justify-center py-3.5">
-              {property ? 'Salvar alterações' : 'Cadastrar imóvel'}
+            <button type="submit" disabled={saving || uploading} className="btn-primary flex-1 justify-center py-3.5 disabled:opacity-60">
+              {saving ? 'Salvando...' : property ? 'Salvar alterações' : 'Cadastrar imóvel'}
             </button>
             <button type="button" onClick={onCancel} className="flex-1 py-3.5 border-2 border-gray-200 text-gray-600 rounded-lg font-semibold hover:border-gray-300 transition-colors">
               Cancelar
