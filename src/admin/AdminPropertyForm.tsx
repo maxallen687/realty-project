@@ -14,6 +14,20 @@ interface Props {
 
 type FormData = Omit<Property, 'id' | 'createdAt' | 'updatedAt'>;
 
+// Defined at module scope (NOT inside the component) so its identity stays
+// stable across renders. If it were declared inside AdminPropertyForm, every
+// keystroke would create a new component type, forcing React to remount the
+// inputs and lose focus after each character.
+function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
+      {children}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    </div>
+  );
+}
+
 const EMPTY: FormData = {
   title: '',
   description: '',
@@ -145,14 +159,6 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
       setUploading(false);
     }
   };
-
-  const Field = ({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) => (
-    <div>
-      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
-      {children}
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-    </div>
-  );
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 flex items-start justify-center p-4 overflow-y-auto">
