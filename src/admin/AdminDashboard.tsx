@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Plus, Edit2, Trash2, Star, StarOff, LogOut, Home,
-  Search, Eye, LayoutDashboard, Building2,
+  Search, Eye, LayoutDashboard, Building2, AlertTriangle,
 } from 'lucide-react';
 import { useProperties } from '../hooks/useProperties';
 import { useAdmin } from '../hooks/useAdmin';
+import { isSupabaseConfigured } from '../lib/supabase';
 import type { Property } from '../types';
 import AdminPropertyForm from './AdminPropertyForm';
 import { formatPrice } from '../components/PropertyCard';
@@ -78,6 +79,23 @@ export default function AdminDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Demo-mode warning — properties are NOT public until Supabase is configured */}
+        {!isSupabaseConfigured && (
+          <div className="mb-8 rounded-xl border-2 border-yellow-300 bg-yellow-50 p-4 sm:p-5 flex gap-3">
+            <AlertTriangle className="w-6 h-6 text-yellow-600 shrink-0 mt-0.5" />
+            <div className="text-sm text-yellow-900">
+              <p className="font-bold mb-1">Atenção: os imóveis ainda NÃO estão públicos.</p>
+              <p className="leading-relaxed">
+                O site está em <strong>modo de demonstração</strong>: os imóveis que você
+                cadastra ficam salvos apenas <strong>neste navegador</strong> e não aparecem
+                para os visitantes. Para publicá-los de verdade, é preciso configurar as
+                credenciais do Supabase no arquivo <code className="bg-yellow-100 px-1 rounded">src/lib/supabase.ts</code> e
+                refazer o deploy.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
