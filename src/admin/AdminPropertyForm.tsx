@@ -1,13 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { X, Upload, Plus, Star, StarOff, ChevronDown } from 'lucide-react';
 import type { Property, PropertyType, PropertyStatus } from '../types';
 import { supabase, isSupabaseConfigured, PROPERTY_IMAGES_BUCKET } from '../lib/supabase';
+import { buildLocationIndex, neighborhoodsFor } from '../lib/locations';
 
 const PROPERTY_TYPES: PropertyType[] = ['Casa', 'Apartamento', 'Terreno', 'Chácara/Sítio/Fazenda'];
 const PROPERTY_STATUSES: PropertyStatus[] = ['Pronto', 'Em construção', 'Comercial'];
 
 interface Props {
   property?: Property;
+  /** Imóveis já cadastrados — usados só para sugerir cidades/bairros existentes. */
+  existingProperties?: Property[];
   onSave: (data: Omit<Property, 'id' | 'createdAt' | 'updatedAt'>) => void | Promise<void>;
   onCancel: () => void;
 }
@@ -48,7 +51,7 @@ const EMPTY: FormData = {
   whatsappContact: '',
 };
 
-export default function AdminPropertyForm({ property, onSave, onCancel }: Props) {
+export default function AdminPropertyForm({ property, existingProperties = [], onSave, onCancel }: Props) {
   const [form, setForm] = useState<FormData>(property ? {
     title: property.title,
     description: property.description,
@@ -74,6 +77,15 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  // Sugestões (datalist) com as cidades/bairros já usados em outros imóveis.
+  // São apenas atalhos — digitar um valor novo continua liberado, e ele passa a
+  // alimentar os filtros da busca assim que o imóvel é salvo.
+  const locations = useMemo(() => buildLocationIndex(existingProperties), [existingProperties]);
+  const neighborhoodSuggestions = useMemo(
+    () => neighborhoodsFor(locations, form.city),
+    [locations, form.city]
+  );
 
   const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
     setForm(f => ({ ...f, [key]: value }));
@@ -101,7 +113,13 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
     if (!validate()) return;
     setSaving(true);
     try {
-      await onSave(form);
+      // Normaliza cidade/bairro antes de salvar para não gerar opções
+      // duplicadas ("Centro" e "Centro ") nos filtros da busca.
+      await onSave({
+        ...form,
+        city: form.city.trim().replace(/\s+/g, ' '),
+        neighborhood: form.neighborhood.trim().replace(/\s+/g, ' '),
+      });
     } finally {
       setSaving(false);
     }
@@ -209,11 +227,17 @@ export default function AdminPropertyForm({ property, onSave, onCancel }: Props)
             </Field>
 
             <Field label="Cidade *" error={errors.city}>
-              <input type="text" value={form.city} onChange={e => set('city', e.target.value)} className="input-field" placeholder="Ex: Curitiba" />
+              <input type="text" list="cidades-cadastradas" value={form.city} onChange={e => set('city', e.target.value)} className="input-field" placeholder="Ex: Santana do Livramento" autoComplete="off" />
+              <datalist id="cidades-cadastradas">
+                {locations.cities.map(c => <option key={c} value={c} />)}
+              </datalist>
             </Field>
 
             <Field label="Bairro *" error={errors.neighborhood}>
-              <input type="text" value={form.neighborhood} onChange={e => set('neighborhood', e.target.value)} className="input-field" placeholder="Ex: Batel" />
+              <input type="text" list="bairros-cadastrados" value={form.neighborhood} onChange={e => set('neighborhood', e.target.value)} className="input-field" placeholder="Ex: Centro" autoComplete="off" />
+              <datalist id="bairros-cadastrados">
+                {neighborhoodSuggestions.map(n => <option key={n} value={n} />)}
+              </datalist>
             </Field>
 
             <div className="sm:col-span-2">
