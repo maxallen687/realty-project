@@ -4,7 +4,7 @@ import { Search, SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import PropertyCard from '../components/PropertyCard';
 import { useProperties } from '../hooks/useProperties';
 import type { PropertyFilters, PropertyType, PropertyStatus } from '../types';
-import { CITIES, NEIGHBORHOODS } from '../data/mockProperties';
+import { buildLocationIndex, neighborhoodsFor, sameLocation, withSelected } from '../lib/locations';
 
 const DEFAULT_FILTERS: PropertyFilters = {
   search: '',
@@ -35,9 +35,17 @@ export default function Sales() {
     if (type) setFilters(f => ({ ...f, type }));
   }, [searchParams]);
 
+  // Cidades e bairros vêm dos imóveis cadastrados: nada é fixo no código.
+  const locations = useMemo(() => buildLocationIndex(properties), [properties]);
+
+  const cities = useMemo(
+    () => withSelected(locations.cities, filters.city),
+    [locations, filters.city]
+  );
+
   const neighborhoods = useMemo(
-    () => (filters.city ? NEIGHBORHOODS[filters.city] || [] : []),
-    [filters.city]
+    () => withSelected(neighborhoodsFor(locations, filters.city), filters.neighborhood),
+    [locations, filters.city, filters.neighborhood]
   );
 
   const filtered = useMemo(() => {
@@ -46,8 +54,8 @@ export default function Sales() {
         const q = filters.search.toLowerCase();
         if (!p.title.toLowerCase().includes(q) && !p.neighborhood.toLowerCase().includes(q) && !p.city.toLowerCase().includes(q) && !p.address.toLowerCase().includes(q)) return false;
       }
-      if (filters.city && p.city !== filters.city) return false;
-      if (filters.neighborhood && p.neighborhood !== filters.neighborhood) return false;
+      if (filters.city && !sameLocation(p.city, filters.city)) return false;
+      if (filters.neighborhood && !sameLocation(p.neighborhood, filters.neighborhood)) return false;
       if (filters.type && p.type !== filters.type) return false;
       if (filters.status && p.status !== filters.status) return false;
       if (filters.bedrooms && p.bedrooms < parseInt(filters.bedrooms)) return false;
@@ -129,9 +137,9 @@ export default function Sales() {
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Cidade</label>
                 <div className="relative">
-                  <select value={filters.city} onChange={e => set('city', e.target.value)} className="select-field pr-10">
+                  <select value={filters.city} onChange={e => set('city', e.target.value)} className="select-field pr-10" disabled={cities.length === 0}>
                     <option value="">Todas as cidades</option>
-                    {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
+                    {cities.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                   <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 </div>
@@ -141,7 +149,7 @@ export default function Sales() {
               <div>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Bairro</label>
                 <div className="relative">
-                  <select value={filters.neighborhood} onChange={e => set('neighborhood', e.target.value)} className="select-field pr-10" disabled={!filters.city}>
+                  <select value={filters.neighborhood} onChange={e => set('neighborhood', e.target.value)} className="select-field pr-10" disabled={neighborhoods.length === 0}>
                     <option value="">Todos os bairros</option>
                     {neighborhoods.map(n => <option key={n} value={n}>{n}</option>)}
                   </select>
