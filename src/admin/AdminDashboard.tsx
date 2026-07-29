@@ -270,6 +270,7 @@ export default function AdminDashboard() {
       {formOpen && (
         <AdminPropertyForm
           property={editingProperty}
+          existingProperties={properties}
           onSave={handleSave}
           onCancel={() => { setFormOpen(false); setEditingProperty(undefined); }}
         />
