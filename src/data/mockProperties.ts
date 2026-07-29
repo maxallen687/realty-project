@@ -151,15 +151,3 @@ export const mockProperties: Property[] = [
     updatedAt: '2024-03-01T10:00:00Z',
   },
 ];
-
-export const CITIES = ['Curitiba', 'São José dos Pinhais', 'Colombo', 'Lapa', 'Araucária', 'Pinhais', 'Almirante Tamandaré'];
-
-export const NEIGHBORHOODS: Record<string, string[]> = {
-  'Curitiba': ['Batel', 'Champagnat', 'Centro', 'Água Verde', 'Seminário', 'Bigorrilho', 'Santa Felicidade', 'Portão'],
-  'São José dos Pinhais': ['Afonso Pena', 'Centro', 'Guatupê', 'São Marcos', 'Costeira'],
-  'Colombo': ['Centro', 'Jardim Belo Horizonte', 'Monza', 'Roça Grande'],
-  'Lapa': ['Centro', 'Zona Rural'],
-  'Araucária': ['Centro', 'Cachoeira', 'Thomaz Coelho'],
-  'Pinhais': ['Centro', 'Tarumã', 'Vargem Grande'],
-  'Almirante Tamandaré': ['Centro', 'Cachoeira', 'Lamenha Pequena'],
-};
